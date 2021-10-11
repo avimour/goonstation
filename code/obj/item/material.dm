@@ -25,16 +25,6 @@
 		if(src.material?.name)
 			initial_material_name = src.material.name
 
-	unpooled()
-		..()
-		src.pixel_x = rand(0 - wiggle, wiggle)
-		src.pixel_y = rand(0 - wiggle, wiggle)
-		setup_material()
-
-	pooled()
-		..()
-		name = initial(name)
-
 	proc/setup_material()
 		.= 0
 
@@ -590,10 +580,6 @@
 		icon_state += "[rand(1,3)]"
 		src.setItemSpecial(/datum/item_special/double)
 
-	unpooled()
-		. = ..()
-		src.setItemSpecial(/datum/item_special/double)
-
 	attack(mob/living/carbon/M as mob, mob/living/carbon/user as mob)
 		if(!scalpel_surgery(M,user)) return ..()
 		else return
@@ -797,7 +783,7 @@
 
 			else if (istype(M, /obj/item/raw_material/shard))
 				if (output_bar_from_item(M, 10))
-					pool(M)
+					qdel(M)
 
 			else if (istype(M, /obj/item/raw_material))
 				output_bar_from_item(M)
@@ -873,7 +859,7 @@
 		var/output_location = src.get_output_location()
 
 		var/bar_type = getProcessedMaterialForm(MAT)
-		var/obj/item/material_piece/BAR = unpool(bar_type)
+		var/obj/item/material_piece/BAR = new bar_type
 		BAR.quality = quality
 		BAR.name += getQualityName(quality)
 		BAR.setMaterial(MAT)

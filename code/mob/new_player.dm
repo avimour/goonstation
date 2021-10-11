@@ -749,7 +749,6 @@ a.latejoin-card:hover {
 				traitormob.make_wraith()
 				generate_wraith_objectives(traitor)
 
-#ifdef SECRETS_ENABLED
 			if (ROLE_ARCFIEND)
 				traitor.special_role = ROLE_ARCFIEND
 				traitormob.make_arcfiend()
@@ -758,7 +757,6 @@ a.latejoin-card:hover {
 			#else
 				objective_set_path = pick(typesof(/datum/objective_set/traitor))
 			#endif
-#endif
 
 			else // Fallback if role is unrecognized.
 				traitor.special_role = ROLE_TRAITOR

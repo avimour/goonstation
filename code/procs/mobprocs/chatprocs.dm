@@ -483,7 +483,7 @@
 			src.emote_allowed = 0
 			return 0
 		if (world.time >= (src.last_emote_time + src.last_emote_wait))
-			if (!(src.client && (src.client.holder && admin_bypass) && !src.client.player_mode) && voluntary)
+			if (!no_emote_cooldowns && !(src.client && (src.client.holder && admin_bypass) && !src.client.player_mode) && voluntary)
 				src.emote_allowed = 0
 				src.last_emote_time = world.time
 				src.last_emote_wait = time
@@ -536,6 +536,7 @@
 		return
 
 	logTheThing("diary", src, null, ": [msg]", "ooc")
+	phrase_log.log_phrase("ooc", msg)
 
 #ifdef DATALOGGER
 	game_stats.ScanText(msg)
@@ -645,6 +646,7 @@
 		if (M.client.holder && !M.client.only_local_looc && !M.client.player_mode)
 			recipients += M.client
 
+	phrase_log.log_phrase("looc", msg)
 	for (var/client/C in recipients)
 		// DEBUGGING
 		if (!C.preferences)

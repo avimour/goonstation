@@ -184,10 +184,6 @@ datum
 			transparency = 50
 			var/damage_counter = 0
 
-			pooled()
-				..()
-				damage_counter = 0
-
 			on_mob_life(var/mob/M, var/mult = 1)
 
 				if (!M) M = holder.my_atom
@@ -255,10 +251,6 @@ datum
 			value = 7 // 3 2 1 heat
 			var/counter = 1
 
-			pooled()
-				..()
-				counter = 1
-
 			on_mob_life(var/mob/M, var/mult = 1) // -cogwerks. previous version
 				if (!M) M = holder.my_atom
 				if (!counter) counter = 1
@@ -302,10 +294,6 @@ datum
 			depletion_rate = 0.1
 			var/counter = 1
 			penetrates_skin = 1
-
-			pooled()
-				..()
-				counter = 1
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -686,10 +674,6 @@ datum
 			transparency = 255
 			var/remove_buff = 0
 
-			pooled()
-				..()
-				remove_buff = 0
-
 			on_add()
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("r_cholesterol", -10)
@@ -899,11 +883,6 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 
-			pooled()
-				..()
-				remove_buff = 0
-				counter = 1
-
 			on_add()
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("r_pancuronium", -30)
@@ -977,11 +956,6 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 
-			pooled()
-				..()
-				remove_buff = 0
-				counter = 1
-
 			on_add()
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("r_sodium_thiopental", -30)
@@ -1032,11 +1006,6 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 
-			pooled()
-				..()
-				remove_buff = 0
-				counter = 1
-
 			on_add()
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
 					remove_buff = holder.my_atom:add_stam_mod_max("r_ketamine", -20)
@@ -1079,11 +1048,6 @@ datum
 			var/counter = 1
 			var/remove_buff = 0
 			blob_damage = 2
-
-			pooled()
-				..()
-				remove_buff = 0
-				counter = 1
 
 			on_add()
 				if (istype(holder) && istype(holder.my_atom) && hascall(holder.my_atom,"add_stam_mod_max"))
@@ -1191,11 +1155,6 @@ datum
 			var/fainted = 0
 			blob_damage = 1
 			value = 4 // 3c + heat
-
-			pooled()
-				..()
-				counter = 1
-				fainted = 0
 
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
@@ -1485,10 +1444,6 @@ datum
 			var/counter = 1
 			blob_damage = 5
 
-			pooled()
-				..()
-				counter = 1
-
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 
@@ -1558,11 +1513,6 @@ datum
 
 			var/tmp/progress_timer = 1
 
-			pooled()
-				..()
-				progress_timer = 1
-
-
 			on_mob_life(var/mob/M, var/mult = 1)
 				if (!M) M = holder.my_atom
 				//M.changeStatus("radiation", 30, 1)
@@ -1613,6 +1563,7 @@ datum
 			fluid_g = 206
 			fluid_b = 69
 			transparency = 255
+			data = 0
 			depletion_rate = 0.1
 			var/spooksounds = list('sound/effects/ghost.ogg' = 80,'sound/effects/ghost2.ogg' = 20,'sound/effects/ghostbreath.ogg' = 60, \
 					'sound/effects/ghostlaugh.ogg' = 40,'sound/effects/ghostvoice.ogg' = 90)
@@ -1631,27 +1582,6 @@ datum
 			var/t8 = 51
 			var/t9 = 101
 			var/t10 = 103
-
-			pooled()
-				..()
-				lastSpook = 0
-				lastSpookLen = 0
-				ai_was_active = 0
-
-			unpooled()
-				..()
-				data = 0
-				t1 = initial(t1)
-				t2 = initial(t2)
-				t3 = initial(t3)
-				t4 = initial(t4)
-				t5 = initial(t5)
-				t6 = initial(t6)
-				t7 = initial(t7)
-				t8 = initial(t8)
-				t9 = initial(t9)
-				t10 = initial(t10)
-
 
 			//MBC : you may be wondering why this looks so weird
 			//we need to proc tiered effects IN ORDER, even if they were skipped! that is why! also im bad but this works fine its just harder to read than the OG way ok
